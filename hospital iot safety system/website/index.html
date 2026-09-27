@@ -1,0 +1,425 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Hospital Security Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i data-lucide="hospital"></i>
+            </div>
+
+            <div>
+
+                <h2>
+                    SecureCare
+                </h2>
+
+                <span>
+                    Hospital Monitoring
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="monitoring.html">
+                <i data-lucide="radio"></i>
+                <span>Live Monitoring</span>
+            </a>
+
+            <a href="history.html">
+                <i data-lucide="clipboard-list"></i>
+                <span>History</span>
+            </a>
+
+            <a href="analytics.html">
+                <i data-lucide="chart-column"></i>
+                <span>Analytics</span>
+            </a>
+
+            <a href="alerts.html">
+                <i data-lucide="triangle-alert"></i>
+                <span>Alerts</span>
+            </a>
+
+            <a href="settings.html">
+                <i data-lucide="settings"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div class="page-title">
+
+                <h1>
+                    Security Dashboard
+                </h1>
+
+                <p>
+                    Room 01 • Real-time monitoring
+                </p>
+
+            </div>
+
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                SYSTEM ONLINE
+
+            </div>
+
+        </header>
+
+
+        <section class="cards">
+
+            <div class="card sensor-card">
+
+                <div class="sensor-top">
+
+                    <span>
+                        Temperature
+                    </span>
+
+                    <span class="sensor-icon">
+                        <i data-lucide="thermometer"></i>
+                    </span>
+
+                </div>
+
+                <div
+                    class="sensor-value"
+                    id="temperature"
+                >
+                    --
+                </div>
+
+                <span
+                    id="temperature-status"
+                    class="sensor-status normal"
+                >
+                    NORMAL
+                </span>
+
+            </div>
+
+
+            <div class="card sensor-card">
+
+                <div class="sensor-top">
+
+                    <span>
+                        Smoke
+                    </span>
+
+                    <span class="sensor-icon">
+                        <i data-lucide="wind"></i>
+                    </span>
+
+                </div>
+
+                <div
+                    class="sensor-value"
+                    id="smoke"
+                >
+                    --
+                </div>
+
+                <span
+                    id="smoke-status"
+                    class="sensor-status normal"
+                >
+                    NORMAL
+                </span>
+
+            </div>
+
+
+            <div class="card sensor-card">
+
+                <div class="sensor-top">
+
+                    <span>
+                        Fire
+                    </span>
+
+                    <span class="sensor-icon">
+                        <i data-lucide="flame"></i>
+                    </span>
+
+                </div>
+
+                <div
+                    class="sensor-value"
+                    id="fire"
+                >
+                    --
+                </div>
+
+                <span
+                    id="fire-status"
+                    class="sensor-status normal"
+                >
+                    NORMAL
+                </span>
+
+            </div>
+
+
+            <div class="card sensor-card">
+
+                <div class="sensor-top">
+
+                    <span>
+                        Vibration
+                    </span>
+
+                    <span class="sensor-icon">
+                        <i data-lucide="activity"></i>
+                    </span>
+
+                </div>
+
+                <div
+                    class="sensor-value"
+                    id="vibration"
+                >
+                    --
+                </div>
+
+                <span
+                    id="vibration-status"
+                    class="sensor-status normal"
+                >
+                    NORMAL
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <section class="grid-2">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h3>
+                        Sensor Activity
+                    </h3>
+
+                    <span>
+                        Live
+                    </span>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="sensorChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h3>
+                        Alert Summary
+                    </h3>
+
+                    <span>
+                        Current
+                    </span>
+
+                </div>
+
+
+                <div class="alert-row">
+
+                    <div class="alert-left">
+
+                        <div class="alert-icon">
+                            <i data-lucide="flame"></i>
+                        </div>
+
+                        <span>
+                            Fire
+                        </span>
+
+                    </div>
+
+                    <strong id="fire-alert-count">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="alert-row">
+
+                    <div class="alert-left">
+
+                        <div class="alert-icon">
+                            <i data-lucide="wind"></i>
+                        </div>
+
+                        <span>
+                            Smoke
+                        </span>
+
+                    </div>
+
+                    <strong id="smoke-alert-count">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="alert-row">
+
+                    <div class="alert-left">
+
+                        <div class="alert-icon">
+                            <i data-lucide="activity"></i>
+                        </div>
+
+                        <span>
+                            Vibration
+                        </span>
+
+                    </div>
+
+                    <strong id="vibration-alert-count">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    Recent Readings
+                </h3>
+
+                <a
+                    href="history.html"
+                    class="btn btn-secondary"
+                >
+                    View History
+                </a>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>TIME</th>
+                            <th>TEMP</th>
+                            <th>SMOKE</th>
+                            <th>FIRE</th>
+                            <th>VIBRATION</th>
+                            <th>STATUS</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="recent-table">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script
+    type="module"
+    src="js/dashboard.js"
+></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+
+</html>
+```
